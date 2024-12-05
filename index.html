@@ -5,52 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Product Recommendation Quiz</title>
     <style>
-        body {
-    font-family: 'Arial', sans-serif;
-    background: radial-gradient(circle, #d1c2e3, #4b0082, #2c003e); /* Gradient with a darker purple */
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-}
-
-.quiz-container {
-    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for contrast */
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-    backdrop-filter: blur(15px); /* Increased blur effect */
-    margin-top: 30px;
-    position: relative;
-    z-index: 10;
-}
-
-/* Animated gradient background for interactivity */
-@keyframes backgroundAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
+   /* General Body Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background: radial-gradient(circle, #d1c2e3, #4b0082, #2c003e);
-    background-size: 300% 300%; /* Makes the gradient movement smoother */
+    background: radial-gradient(circle, #e4e6eb, #d1c2e3, #4b0082, #2c003e); /* Cloud-like gradient */
+    background-size: 300% 300%; /* Smooth gradient transitions */
     color: #333;
     margin: 0;
     padding: 0;
@@ -61,7 +20,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    animation: hueShift 20s ease infinite; /* Animated gradient color shift */
+    animation: hueShift 20s ease infinite; /* Animated gradient */
 }
 
 @keyframes hueShift {
@@ -76,8 +35,24 @@ body {
     }
 }
 
-/* Floating particles */
-.particles {
+/* Quiz Container Styling */
+.quiz-container {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for contrast */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(15px); /* Increased blur effect */
+    margin-top: 30px;
+    position: relative;
+    z-index: 10;
+    display: none; /* Initially hidden */
+}
+
+/* Floating Sparkles */
+.sparkle-container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -85,40 +60,44 @@ body {
     z-index: -2;
 }
 
-.particle {
+.sparkle {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* Brighter white */
     border-radius: 50%;
-    animation: floatParticle 8s ease-in-out infinite;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkle 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
 }
 
-.particle:nth-child(odd) {
-    animation-duration: 12s;
+.sparkle:nth-child(odd) {
+    animation-duration: 2.5s;
+    width: 12px;
+    height: 12px; /* Larger sparkles */
 }
 
-.particle:nth-child(even) {
-    animation-duration: 9s;
+.sparkle:nth-child(even) {
+    animation-duration: 3.5s;
+    width: 8px;
+    height: 8px; /* Slightly smaller sparkles */
 }
 
-@keyframes floatParticle {
+@keyframes sparkle {
     0% {
-        transform: translate(0, 0);
+        transform: scale(1);
         opacity: 1;
     }
     50% {
-        transform: translate(50px, -100px);
-        opacity: 0.5;
+        transform: scale(1.5);
+        opacity: 0.6; /* Fade slightly in the middle */
     }
     100% {
-        transform: translate(-50px, -200px);
-        opacity: 0;
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
-/* Radial glows */
+/* Radial Glows */
 .glow-container {
     position: absolute;
     width: 100%;
@@ -128,20 +107,23 @@ body {
 
 .radial-glow {
     position: absolute;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 70%);
-    width: 200px;
-    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 70%);
+    width: 300px; /* Increased size for cloud-like effect */
+    height: 300px;
     border-radius: 50%;
     opacity: 0.6;
-    animation: glowPulse 6s ease-in-out infinite;
+    animation: glowPulse 10s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 .radial-glow:nth-child(odd) {
-    animation-duration: 8s;
+    animation-duration: 12s;
+    transform: scale(1.2); /* Larger glows */
 }
 
 .radial-glow:nth-child(even) {
-    animation-duration: 5s;
+    animation-duration: 8s;
+    transform: scale(1);
 }
 
 @keyframes glowPulse {
@@ -151,157 +133,8 @@ body {
     }
     50% {
         transform: scale(1.5);
-        opacity: 0.2;
+        opacity: 0.3;
     }
-}
-
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, #f4a5c1, #d1c2e3, #4b0082);
-    background-size: 200% 200%;
-    z-index: -1;
-    animation: backgroundAnimation 10s ease infinite;
-    opacity: 0.7;
-}
-
-/* Enhanced floating icons */
-.floating-icons img {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    animation: floatIcon 7s ease-in-out infinite;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-    transition: transform 0.3s ease;
-}
-
-.floating-icons img:hover {
-    transform: scale(1.2) rotate(15deg);
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
-}
-
-/* Highlight hovered buttons */
-.options button:hover {
-    background: linear-gradient(120deg, #4b0082, #8b00ff);
-    color: #fff;
-    transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.options button {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #333;
-    font-size: 1.1rem;
-    border: 2px solid #4b0082;
-    border-radius: 10px;
-    width: auto; /* Auto-adjust the width based on content */
-    height: 50px; /* Consistent height */
-    transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.options img {
-    max-width: 40px; /* Restricts image width */
-    max-height: 40px; /* Restricts image height */
-    margin-right: 10px; /* Adds spacing between icon and text */
-    flex-shrink: 0; /* Prevents images from shrinking disproportionately */
-    object-fit: contain; /* Ensures the image scales properly */
-}
-.options {
-    display: flex;
-    justify-content: center; /* Centers the buttons horizontally */
-    flex-wrap: wrap; /* Allows wrapping to a new line if space is limited */
-    gap: 20px; /* Adds space between buttons */
-    margin-top: 20px;
-}
-.options button:hover {
-    background-color: #4b0082;
-    color: #fff;
-    transform: scale(1.05);
-
-}
-
-h1, .question {
-    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-
-/* Add subtle glow effect to text */
-h1, .question {
-    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.product-link {
-    position: relative;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.product-link:hover {
-    color: #8b00ff;
-    text-shadow: 0 2px 10px rgba(139, 0, 255, 0.5);
-}
-
-/* Add floating sparkles to enhance interactivity */
-@keyframes sparkle {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.sparkle {
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    pointer-events: none;
-    animation: sparkle 3s ease-in-out infinite;
-}
-
-.sparkle:nth-child(odd) {
-    animation-duration: 2.5s;
-}
-
-.sparkle:nth-child(even) {
-    animation-duration: 3.5s;
-}
-
-/* Place sparkles dynamically */
-.sparkle-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -2;
-}
-
-/* Pop-out Font Effect for Quiz Heading */
-.quiz-container h1 {
-    font-size: 3rem;
-    color: #4b0082;
-    font-weight: bold;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3), 
-                 -3px -3px 5px rgba(255, 255, 255, 0.5); /* Pop-out effect */
-    margin-bottom: 20px;
 }
 
 /* Home Page Styling */
@@ -324,7 +157,7 @@ h1, .question {
     animation: bounceText 1.5s infinite; /* Fun bounce animation */
 }
 
-/* Button Style for the Home Page */
+/* Button Styling */
 .start-btn {
     padding: 20px 40px;
     font-size: 1.5rem;
@@ -352,6 +185,36 @@ h1, .question {
     }
 }
 
+/* Buttons for Quiz Options */
+.options button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    font-size: 1.1rem;
+    border: 2px solid #4b0082;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.options button:hover {
+    background-color: #4b0082;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Glow Effect for Quiz Heading */
+.quiz-container h1 {
+    font-size: 3rem;
+    color: #4b0082;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3), 
+                 -3px -3px 5px rgba(255, 255, 255, 0.5); /* Pop-out effect */
+    margin-bottom: 20px;
+}
+
+
 /* Initially hide the quiz container */
 .quiz-container {
     display: none; /* Hidden until "YES GO!" is clicked */
@@ -362,19 +225,19 @@ h1, .question {
     </style>
 </head>
 <body>
-    <div class="particles">
-    <div class="particle" style="top: 10%; left: 20%;"></div>
-    <div class="particle" style="top: 50%; left: 70%;"></div>
-    <div class="particle" style="top: 30%; left: 40%;"></div>
-    <div class="particle" style="top: 80%; left: 15%;"></div>
-    <div class="particle" style="top: 60%; left: 85%;"></div>
-</div>
-
-<div class="glow-container">
-    <div class="radial-glow" style="top: 20%; left: 30%;"></div>
-    <div class="radial-glow" style="top: 50%; left: 70%;"></div>
-    <div class="radial-glow" style="top: 80%; left: 20%;"></div>
-</div>
+    <div class="sparkle-container">
+        <div class="sparkle" style="top: 10%; left: 20%;"></div>
+        <div class="sparkle" style="top: 30%; left: 50%;"></div>
+        <div class="sparkle" style="top: 70%; left: 80%;"></div>
+        <div class="sparkle" style="top: 40%; left: 10%;"></div>
+        <div class="sparkle" style="top: 60%; left: 40%;"></div>
+    </div>
+  
+    <div class="glow-container">
+        <div class="radial-glow" style="top: 10%; left: 30%;"></div>
+        <div class="radial-glow" style="top: 50%; left: 60%;"></div>
+        <div class="radial-glow" style="top: 80%; left: 40%;"></div>
+    </div>
 
 <div id="home-page" class="home-page">
     <h1 class="home-heading">Are you ready for a product recommendation?</h1>
