@@ -66,32 +66,32 @@ This project was created by a collaborative team:
 1. **Kavya Shah**  
    - **Role:** Frontend Developer  
    - Responsible for designing the overall structure of the website and integrating quiz logic with JavaScript.  
-   - **Contact:** [kavya.shah@example.com](mailto: kashah@ucsd.edu)
+   - **Contact:**(mailto: kashah@ucsd.edu)
 
 2. **Ariha Shah**  
    - **Role:** UI/UX Designer  
    - Focused on creating engaging visuals, including gradients, animations, and hover effects using CSS.  
-   - **Contact:** [ariha.shah@example.com](mailto: ars021@ucsd.edu)
+   - **Contact:** (mailto: ars021@ucsd.edu)
 
 3. **Pushti Shah**  
    - **Role:** Project Coordinator & Tester  
    - Managed the workflow, ensured the code was functional, and tested the website on various devices.  
-   - **Contact:** [pushti.shah@example.com](mailto: pushah@ucsd.edu)
+   - **Contact:** (mailto: pushah@ucsd.edu)
   
 4. **Keyura Valalla**  
-- Created the logic for dynamic question transitions in JavaScript.
-- Debugged and optimized JavaScript for seamless navigation through questions.
-- Contact: [kvalalla@ucsd.edu](mailto:kvalalla@ucsd.edu)
+   - Created the logic for dynamic question transitions in JavaScript.
+   - Debugged and optimized JavaScript for seamless navigation through questions.
+   - Contact: [kvalalla@ucsd.edu](mailto:kvalalla@ucsd.edu)
 
 5. **Dishita Joshi**  
-- Designed the home page layout and integrated animations for interactive user experience.
-- Styled the quiz components and buttons using CSS.
-- Contact: [djoshi@ucsd.edu](mailto:djoshi@ucsd.edu)
+   - Designed the home page layout and integrated animations for interactive user experience.
+   - Styled the quiz components and buttons using CSS.
+   - Contact: [djoshi@ucsd.edu](mailto:djoshi@ucsd.edu)
 
 6. **Isha Varada**  
-- Worked on the personalized product recommendation logic.
-- Ensured that the product links and descriptions were accurate and functional.
-- Contact: [ivarada@ucsd.edu](mailto:ivarada@ucsd.edu)
+   - Worked on the personalized product recommendation logic.
+   - Ensured that the product links and descriptions were accurate and functional.
+   - Contact: [ivarada@ucsd.edu](mailto:ivarada@ucsd.edu)
 
 ---
 
