@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Product Recommendation Quiz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles">
+        <div class="particle" style="top: 10%; left: 20%;"></div>
+        <div class="particle" style="top: 50%; left: 70%;"></div>
+        <div class="particle" style="top: 30%; left: 40%;"></div>
+        <div class="particle" style="top: 80%; left: 15%;"></div>
+        <div class="particle" style="top: 60%; left: 85%;"></div>
+    </div>
+
+    <!-- Radial glow effects -->
+    <div class="glow-container">
+        <div class="radial-glow" style="top: 20%; left: 30%;"></div>
+        <div class="radial-glow" style="top: 50%; left: 70%;"></div>
+        <div class="radial-glow" style="top: 80%; left: 20%;"></div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" class="home-page">
+        <h1 class="home-heading">Are you ready for a product recommendation?</h1>
+        <button class="start-btn" onclick="startQuiz()">YES, GO!</button>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <h1>Personalized Product Recommendation Quiz</h1>
+
+        <!-- Question 1 -->
+        <div class="question" id="question1">How old are you?</div>
+        <div class="options" id="options1">
+            <button onclick="nextQuestion(1, '0-10')">0-10</button>
+            <button onclick="nextQuestion(1, '11-20')">11-20</button>
+            <button onclick="nextQuestion(1, '21-30')">21-30</button>
+            <button onclick="nextQuestion(1, '31-40')">31-40</button>
+            <button onclick="nextQuestion(1, '41+')">41+</button>
+        </div>
+
+        <!-- Add other questions and options (as in your original HTML) -->
+
+        <!-- Result Section -->
+        <div id="result" class="result"></div>
+        <button class="back-btn" onclick="restartQuiz()">Take the Quiz Again</button>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
