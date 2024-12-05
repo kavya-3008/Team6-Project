@@ -4,37 +4,391 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Product Recommendation Quiz</title>
-    <link rel="stylesheet" href="styles.css"> <styles.css>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #d1c2e3, #4b0082, #2c003e); /* Gradient with a darker purple */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.quiz-container {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for contrast */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(15px); /* Increased blur effect */
+    margin-top: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Animated gradient background for interactivity */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #d1c2e3, #4b0082, #2c003e);
+    background-size: 300% 300%; /* Makes the gradient movement smoother */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    animation: hueShift 20s ease infinite; /* Animated gradient color shift */
+}
+
+@keyframes hueShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating particles */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: floatParticle 8s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.particle:nth-child(odd) {
+    animation-duration: 12s;
+}
+
+.particle:nth-child(even) {
+    animation-duration: 9s;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(50px, -100px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50px, -200px);
+        opacity: 0;
+    }
+}
+
+/* Radial glows */
+.glow-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.radial-glow {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 70%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: glowPulse 6s ease-in-out infinite;
+}
+
+.radial-glow:nth-child(odd) {
+    animation-duration: 8s;
+}
+
+.radial-glow:nth-child(even) {
+    animation-duration: 5s;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.2;
+    }
+}
+
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #f4a5c1, #d1c2e3, #4b0082);
+    background-size: 200% 200%;
+    z-index: -1;
+    animation: backgroundAnimation 10s ease infinite;
+    opacity: 0.7;
+}
+
+/* Enhanced floating icons */
+.floating-icons img {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    animation: floatIcon 7s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    transition: transform 0.3s ease;
+}
+
+.floating-icons img:hover {
+    transform: scale(1.2) rotate(15deg);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+}
+
+/* Highlight hovered buttons */
+.options button:hover {
+    background: linear-gradient(120deg, #4b0082, #8b00ff);
+    color: #fff;
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.options button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    font-size: 1.1rem;
+    border: 2px solid #4b0082;
+    border-radius: 10px;
+    width: auto; /* Auto-adjust the width based on content */
+    height: 50px; /* Consistent height */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.options img {
+    max-width: 40px; /* Restricts image width */
+    max-height: 40px; /* Restricts image height */
+    margin-right: 10px; /* Adds spacing between icon and text */
+    flex-shrink: 0; /* Prevents images from shrinking disproportionately */
+    object-fit: contain; /* Ensures the image scales properly */
+}
+.options {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    flex-wrap: wrap; /* Allows wrapping to a new line if space is limited */
+    gap: 20px; /* Adds space between buttons */
+    margin-top: 20px;
+}
+.options button:hover {
+    background-color: #4b0082;
+    color: #fff;
+    transform: scale(1.05);
+
+}
+
+h1, .question {
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Add subtle glow effect to text */
+h1, .question {
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product-link {
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.product-link:hover {
+    color: #8b00ff;
+    text-shadow: 0 2px 10px rgba(139, 0, 255, 0.5);
+}
+
+/* Add floating sparkles to enhance interactivity */
+@keyframes sparkle {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.sparkle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.sparkle:nth-child(odd) {
+    animation-duration: 2.5s;
+}
+
+.sparkle:nth-child(even) {
+    animation-duration: 3.5s;
+}
+
+/* Place sparkles dynamically */
+.sparkle-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+/* Pop-out Font Effect for Quiz Heading */
+.quiz-container h1 {
+    font-size: 3rem;
+    color: #4b0082;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3), 
+                 -3px -3px 5px rgba(255, 255, 255, 0.5); /* Pop-out effect */
+    margin-bottom: 20px;
+}
+
+/* Home Page Styling */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #d1c2e3, #4b0082);
+    color: white;
+}
+
+.home-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    animation: bounceText 1.5s infinite; /* Fun bounce animation */
+}
+
+/* Button Style for the Home Page */
+.start-btn {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    color: white;
+    background-color: #4b0082;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(75, 0, 130, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.start-btn:hover {
+    background-color: #6a0dad;
+    transform: scale(1.1);
+}
+
+/* Bounce Animation for Text */
+@keyframes bounceText {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Initially hide the quiz container */
+.quiz-container {
+    display: none; /* Hidden until "YES GO!" is clicked */
+}
+
+
+
+    </style>
 </head>
 <body>
-    <!-- Floating particles -->
     <div class="particles">
-        <div class="particle" style="top: 10%; left: 20%;"></div>
-        <div class="particle" style="top: 50%; left: 70%;"></div>
-        <div class="particle" style="top: 30%; left: 40%;"></div>
-        <div class="particle" style="top: 80%; left: 15%;"></div>
-        <div class="particle" style="top: 60%; left: 85%;"></div>
-    </div>
+    <div class="particle" style="top: 10%; left: 20%;"></div>
+    <div class="particle" style="top: 50%; left: 70%;"></div>
+    <div class="particle" style="top: 30%; left: 40%;"></div>
+    <div class="particle" style="top: 80%; left: 15%;"></div>
+    <div class="particle" style="top: 60%; left: 85%;"></div>
+</div>
 
-    <!-- Radial glow effects -->
-    <div class="glow-container">
-        <div class="radial-glow" style="top: 20%; left: 30%;"></div>
-        <div class="radial-glow" style="top: 50%; left: 70%;"></div>
-        <div class="radial-glow" style="top: 80%; left: 20%;"></div>
-    </div>
+<div class="glow-container">
+    <div class="radial-glow" style="top: 20%; left: 30%;"></div>
+    <div class="radial-glow" style="top: 50%; left: 70%;"></div>
+    <div class="radial-glow" style="top: 80%; left: 20%;"></div>
+</div>
 
-    <!-- Home Page -->
-    <div id="home-page" class="home-page">
-        <h1 class="home-heading">Are you ready for a product recommendation?</h1>
-        <button class="start-btn" onclick="startQuiz()">YES, GO!</button>
-    </div>
+<div id="home-page" class="home-page">
+    <h1 class="home-heading">Are you ready for a product recommendation?</h1>
+    <button class="start-btn" onclick="startQuiz()">YES, GO!</button>
+</div>
 
-    <!-- Quiz Container -->
+
     <div class="quiz-container">
         <h1>Personalized Product Recommendation Quiz</h1>
 
-        <!-- Question 1 -->
-        <div class="question" id="question1">How old are you?</div>
+        <!-- Question 1: Age -->
+        <div class="question" id="question1">
+            How old are you?
+        </div>
         <div class="options" id="options1">
             <button onclick="nextQuestion(1, '0-10')">0-10</button>
             <button onclick="nextQuestion(1, '11-20')">11-20</button>
@@ -43,14 +397,279 @@
             <button onclick="nextQuestion(1, '41+')">41+</button>
         </div>
 
-        <!-- Add other questions and options (as in your original HTML) -->
+        <!-- Age-Specific Questions -->
+        <!-- 0-10 -->
+        <div class="question" id="question2" style="display:none;">
+            What do you like to do in your free time?
+        </div>
+        <div class="options" id="options2" style="display:none;">
+            <button onclick="nextQuestion(2, 'games')"><img src="https://img.icons8.com/ios/452/game-console.png"> Play Video Games</button>
+            <button onclick="nextQuestion(2, 'toys')"><img src="https://img.icons8.com/ios/452/toy.png"> Play with Toys</button>
+            <button onclick="nextQuestion(2, 'sports')"><img src="https://img.icons8.com/ios/452/basketball.png"> Play Sports</button>
+        </div>
 
-        <!-- Result Section -->
+        <div class="question" id="question8" style="display:none;">
+            What sport do you enjoy the most?
+        </div>
+        <div class="options" id="options8" style="display:none;">
+            <button onclick="nextQuestion(8, 'soccer')"><img src="https://img.icons8.com/ios/452/soccer-ball.png"> Soccer</button>
+            <button onclick="nextQuestion(8, 'basketball')"><img src="https://img.icons8.com/ios/452/basketball.png"> Basketball</button>
+            <button onclick="nextQuestion(8, 'others')"><img src="https://img.icons8.com/ios/452/sports.png"> Other</button>
+        </div>
+
+        <div class="question" id="question9" style="display:none;">
+            Do you like reading?
+        </div>
+        <div class="options" id="options9" style="display:none;">
+            <button onclick="nextQuestion(9, 'yes')"><img src="https://img.icons8.com/ios/452/book.png"> Yes</button>
+            <button onclick="nextQuestion(9, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <!-- 11-20 -->
+        <div class="question" id="question3" style="display:none;">
+            What are you most interested in?
+        </div>
+        <div class="options" id="options3" style="display:none;">
+            <button onclick="nextQuestion(3, 'tech')"><img src="https://img.icons8.com/ios/452/macbook.png"> Technology & Gadgets</button>
+            <button onclick="nextQuestion(3, 'sports')"><img src="https://img.icons8.com/ios/452/soccer-ball.png"> Sports</button>
+            <button onclick="nextQuestion(3, 'fashion')"><img src="https://img.icons8.com/ios/452/t-shirt.png"> Fashion & Style</button>
+        </div>
+
+        <div class="question" id="question10" style="display:none;">
+            Do you play video games?
+        </div>
+        <div class="options" id="options10" style="display:none;">
+            <button onclick="nextQuestion(10, 'yes')"><img src="https://img.icons8.com/ios/452/game-console.png"> Yes</button>
+            <button onclick="nextQuestion(10, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <div class="question" id="question11" style="display:none;">
+            What’s your preferred fashion style?
+        </div>
+        <div class="options" id="options11" style="display:none;">
+            <button onclick="nextQuestion(11, 'casual')"><img src="https://img.icons8.com/ios/452/casual-shirt.png"> Casual</button>
+            <button onclick="nextQuestion(11, 'athletic')"><img src="https://img.icons8.com/ios/452/running-shoes.png"> Athletic</button>
+            <button onclick="nextQuestion(11, 'formal')"><img src="https://img.icons8.com/ios/452/suitcase.png"> Formal</button>
+        </div>
+
+        <!-- 21-30 -->
+        <div class="question" id="question4" style="display:none;">
+            What kind of product do you need most right now?
+        </div>
+        <div class="options" id="options4" style="display:none;">
+            <button onclick="nextQuestion(4, 'fitness')"><img src="https://img.icons8.com/ios/452/fitness.png"> Fitness Tracker</button>
+            <button onclick="nextQuestion(4, 'laptop')"><img src="https://img.icons8.com/ios/452/macbook.png"> Laptop</button>
+            <button onclick="nextQuestion(4, 'smartphone')"><img src="https://img.icons8.com/ios/452/iphone.png"> Smartphone</button>
+        </div>
+
+        <div class="question" id="question12" style="display:none;">
+            Do you work out regularly?
+        </div>
+        <div class="options" id="options12" style="display:none;">
+            <button onclick="nextQuestion(12, 'yes')"><img src="https://img.icons8.com/ios/452/fitness.png"> Yes</button>
+            <button onclick="nextQuestion(12, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <div class="question" id="question13" style="display:none;">
+            Do you enjoy gaming?
+        </div>
+        <div class="options" id="options13" style="display:none;">
+            <button onclick="nextQuestion(13, 'yes')"><img src="https://img.icons8.com/ios/452/game-console.png"> Yes</button>
+            <button onclick="nextQuestion(13, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <!-- 31-40 -->
+        <div class="question" id="question14" style="display:none;">
+            Are you focused on work-related productivity tools?
+        </div>
+        <div class="options" id="options14" style="display:none;">
+            <button onclick="nextQuestion(14, 'yes')"><img src="https://img.icons8.com/ios/452/laptop.png"> Yes</button>
+            <button onclick="nextQuestion(14, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <div class="question" id="question15" style="display:none;">
+            Do you prefer smart home products?
+        </div>
+        <div class="options" id="options15" style="display:none;">
+            <button onclick="nextQuestion(15, 'yes')"><img src="https://img.icons8.com/ios/452/smart-home.png"> Yes</button>
+            <button onclick="nextQuestion(15, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <!-- 41+ -->
+        <div class="question" id="question16" style="display:none;">
+            Are you interested in health and wellness products?
+        </div>
+        <div class="options" id="options16" style="display:none;">
+            <button onclick="nextQuestion(16, 'yes')"><img src="https://img.icons8.com/ios/452/heart-health.png"> Yes</button>
+            <button onclick="nextQuestion(16, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <div class="question" id="question17" style="display:none;">
+            Do you track your health?
+        </div>
+        <div class="options" id="options17" style="display:none;">
+            <button onclick="nextQuestion(17, 'yes')"><img src="https://img.icons8.com/ios/452/heartbeat.png"> Yes</button>
+            <button onclick="nextQuestion(17, 'no')"><img src="https://img.icons8.com/ios/452/no-entry.png"> No</button>
+        </div>
+
+        <!-- Result -->
         <div id="result" class="result"></div>
         <button class="back-btn" onclick="restartQuiz()">Take the Quiz Again</button>
     </div>
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script> <script.js>
+    <script>
+        let responses = {};
+
+        function startQuiz() {
+        document.getElementById("home-page").style.display = "none";
+        document.querySelector(".quiz-container").style.display = "block";
+        }
+
+        // Show next question based on the user's choice
+        function nextQuestion(questionNumber, answer) {
+            // Store the answer
+            responses[`question${questionNumber}`] = answer;
+
+            // Hide current question and options
+            document.getElementById(`question${questionNumber}`).style.display = 'none';
+            document.getElementById(`options${questionNumber}`).style.display = 'none';
+
+            // Show the next question depending on the age group
+            let nextQuestion = questionNumber + 1;
+
+            // For 0-10
+            if (responses.question1 === '0-10') {
+                if (questionNumber === 1) {
+                    document.getElementById(`question2`).style.display = 'block';
+                    document.getElementById(`options2`).style.display = 'block';
+                } else if (questionNumber === 2) {
+                    document.getElementById(`question8`).style.display = 'block';
+                    document.getElementById(`options8`).style.display = 'block';
+                } else if (questionNumber === 8) {
+                    document.getElementById(`question9`).style.display = 'block';
+                    document.getElementById(`options9`).style.display = 'block';
+                } else if (questionNumber === 9) {
+                    showResult();
+                }
+            }
+
+            // For 11-20
+            else if (responses.question1 === '11-20') {
+                if (questionNumber === 1) {
+                    document.getElementById(`question3`).style.display = 'block';
+                    document.getElementById(`options3`).style.display = 'block';
+                } else if (questionNumber === 3) {
+                    document.getElementById(`question10`).style.display = 'block';
+                    document.getElementById(`options10`).style.display = 'block';
+                } else if (questionNumber === 10) {
+                    document.getElementById(`question11`).style.display = 'block';
+                    document.getElementById(`options11`).style.display = 'block';
+                } else if (questionNumber === 11) {
+                    showResult();
+                }
+            }
+
+            // For 21-30
+            else if (responses.question1 === '21-30') {
+                if (questionNumber === 1) {
+                    document.getElementById(`question4`).style.display = 'block';
+                    document.getElementById(`options4`).style.display = 'block';
+                } else if (questionNumber === 4) {
+                    document.getElementById(`question12`).style.display = 'block';
+                    document.getElementById(`options12`).style.display = 'block';
+                } else if (questionNumber === 12) {
+                    document.getElementById(`question13`).style.display = 'block';
+                    document.getElementById(`options13`).style.display = 'block';
+                } else if (questionNumber === 13) {
+                    showResult();
+                }
+            }
+
+            // For 31-40
+            else if (responses.question1 === '31-40') {
+                if (questionNumber === 1) {
+                    document.getElementById(`question14`).style.display = 'block';
+                    document.getElementById(`options14`).style.display = 'block';
+                } else if (questionNumber === 14) {
+                    document.getElementById(`question15`).style.display = 'block';
+                    document.getElementById(`options15`).style.display = 'block';
+                } else if (questionNumber === 15) {
+                    showResult();
+                }
+            }
+
+            // For 41+
+            else if (responses.question1 === '41+') {
+                if (questionNumber === 1) {
+                    document.getElementById(`question16`).style.display = 'block';
+                    document.getElementById(`options16`).style.display = 'block';
+                } else if (questionNumber === 16) {
+                    document.getElementById(`question17`).style.display = 'block';
+                    document.getElementById(`options17`).style.display = 'block';
+                } else if (questionNumber === 17) {
+                    showResult();
+                }
+            }
+        }
+
+        // Display product recommendation based on responses
+        function showResult() {
+            let recommendation = "Based on your answers, we recommend the following product(s): ";
+
+            // Logic for product recommendations based on age and interests
+            if (responses.question1 === '0-10') {
+                if (responses.question2 === 'games') {
+                    recommendation += `<br><strong>Nintendo Switch</strong> <br><a href="https://www.nintendo.com/switch/" class="product-link" target="_blank">View Product</a>`;
+                } else if (responses.question2 === 'toys') {
+                    recommendation += `<br><strong>LEGO Creator 3-in-1 Pirate Ship</strong> <br><a href="https://www.lego.com/en-us/product/creator-3-in-1-pirate-ship-31109" class="product-link" target="_blank">View Product</a>`;
+                } else {
+                    recommendation += `<br><strong>Wilson Evolution Basketball</strong> <br><a href="https://www.wilson.com/en-us/basketball/evolution" class="product-link" target="_blank">View Product</a>`;
+                }
+            } else if (responses.question1 === '11-20') {
+                if (responses.question3 === 'tech') {
+                    recommendation += `<br><strong>Apple AirPods Pro 2</strong> <br><a href="https://www.apple.com/airpods-pro/" class="product-link" target="_blank">View Product</a>`;
+                } else if (responses.question3 === 'sports') {
+                    recommendation += `<br><strong>Adidas Predator Soccer Shoes</strong> <br><a href="https://www.adidas.com/us/predator" class="product-link" target="_blank">View Product</a>`;
+                } else {
+                    recommendation += `<br><strong>Levi's 501 Original Fit Jeans</strong> <br><a href="https://www.levi.com" class="product-link" target="_blank">View Product</a>`;
+                }
+            }
+
+            else if (responses.question1 === '21-30') {
+                if (responses.question4 === 'fitness') {
+                    recommendation += `<br><strong>Fitbit Charge 5</strong> <br><a href="https://www.fitbit.com/global/us/products/trackers/charge5" class="product-link" target="_blank">View Product</a>`;
+                } else if (responses.question4 === 'laptop') {
+                    recommendation += `<br><strong>Apple MacBook Air M2</strong> <br><a href="https://www.apple.com/macbook-air/" class="product-link" target="_blank">View Product</a>`;
+                } else {
+                    recommendation += `<br><strong>iPhone 14 Pro</strong> <br><a href="https://www.apple.com/iphone-14/" class="product-link" target="_blank">View Product</a>`;
+                }
+            }
+
+            else if (responses.question1 === '31-40') {
+                if (responses.question14 === 'yes') {
+                    recommendation += `<br><strong>Microsoft Surface Pro 9</strong> <br><a href="https://www.microsoft.com/surface" class="product-link" target="_blank">View Product</a>`;
+                } else {
+                    recommendation += `<br><strong>Philips Hue Smart Light Bulbs</strong> <br><a href="https://www.philips-hue.com/" class="product-link" target="_blank">View Product</a>`;
+                }
+            }
+
+            else if (responses.question1 === '41+') {
+                if (responses.question16 === 'yes') {
+                    recommendation += `<br><strong>Withings Body+ Smart Scale</strong> <br><a href="https://www.withings.com" class="product-link" target="_blank">View Product</a>`;
+                } else {
+                    recommendation += `<br><strong>Omron Platinum Blood Pressure Monitor</strong> <br><a href="https://www.omronhealthcare.com/" class="product-link" target="_blank">View Product</a>`;
+                }
+            }
+
+            // Display the result
+            document.getElementById("result").innerHTML = recommendation;
+            document.getElementById("result").style.display = 'block';
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            location.reload();
+        }
+    </script>
 </body>
 </html>
